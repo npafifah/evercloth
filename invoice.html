@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Konfirmasi Pembelian - Evercloth</title>
+  <link href="style.css" rel="stylesheet" />
+  <style>
+    .invoice-container {
+      max-width: 700px;
+      margin: 50px auto;
+      padding: 2rem;
+      background-color: #fff;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .invoice-container h1 {
+      text-align: center;
+      color: #8d5a3a;
+      margin-bottom: 2rem;
+    }
+    .invoice-box p {
+      font-size: 1rem;
+      margin: 0.5rem 0;
+    }
+    .invoice-highlight {
+      background-color: #fffaf5;
+      border: 1px solid #f0d3ba;
+      padding: 1rem;
+      border-radius: 12px;
+      margin-top: 1rem;
+    }
+    .back-home {
+      display: block;
+      text-align: center;
+      margin-top: 2rem;
+      padding: 0.8rem 1.5rem;
+      background-color: #8d5a3a;
+      color: white;
+      text-decoration: none;
+      border-radius: 10px;
+    }
+    .back-home:hover {
+      background-color: #73442d;
+    }
+  </style>
+</head>
+<body>
+  <div class="invoice-container">
+    <h1>🎉 Pesanan Anda Berhasil!</h1>
+    <div class="invoice-box">
+      <p><strong>Nama:</strong> <span id="namaPenerima"></span></p>
+      <p><strong>Alamat:</strong> <span id="alamatPenerima"></span></p>
+      <p><strong>Metode Pembayaran:</strong> <span id="metodePembayaran"></span></p>
+
+      <div class="invoice-highlight">
+        <p><strong>Produk:</strong> <span id="produk"></span></p>
+        <p><strong>Jumlah:</strong> <span id="jumlah"></span></p>
+        <p><strong>Total Harga:</strong> <span id="total"></span></p>
+      </div>
+    </div>
+    <a href="index.html" class="back-home">⬅️ Kembali ke Beranda</a>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    document.getElementById("namaPenerima").textContent = params.get("nama") || "-";
+    document.getElementById("alamatPenerima").textContent = params.get("alamat") || "-";
+    document.getElementById("metodePembayaran").textContent = params.get("metode") || "-";
+    document.getElementById("produk").textContent = params.get("produk") || "-";
+    document.getElementById("jumlah").textContent = params.get("jumlah") || "1";
+    document.getElementById("total").textContent = "Rp " + (params.get("total") || "0");
+  </script>
+</body>
+</html>

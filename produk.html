@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Produk - Evercloth</title>
+  <link href="style.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    .pagination {
+      margin: 20px 0;
+      text-align: center;
+    }
+    .pagination a {
+      display: inline-block;
+      margin: 0 5px;
+      padding: 8px 12px;
+      border: 1px solid #ccc;
+      color: #333;
+      text-decoration: none;
+      cursor: pointer;
+      user-select: none;
+    }
+    .pagination a.active {
+      background-color: var(--coklat-muda);
+      color: white;
+      border-color: var(--coklat-muda);
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-top">
+    <div class="logo">
+      <a href="index.html" class="logo-link">
+        <img src="img/logo.jpg" alt="Logo Batik Nawilis" class="logo-img" />
+        <span class="logo-text">EVERCLOTH</span>
+      </a>
+    </div>
+
+    <nav class="nav-desktop" aria-label="Navigasi utama">
+      <ul class="nav-menu">
+        <li><a href="index.html">Beranda</a></li>
+        <li><a class="active" href="#">Produk</a></li>
+        <li><a href="tentang.html">Tentang Kami</a></li>
+        <li><a href="kontak.html">Kontak</a></li>
+      </ul>
+    </nav>
+
+    <div class="header-right">
+       <div class="search-box">
+  <input type="search" id="searchInput" placeholder="Cari produk..." />
+  <i class="fa fa-search"></i>
+</div>
+
+      <a href="keranjang.html" title="Keranjang" class="icon-with-badge">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span class="cart-badge">3</span>
+      </a>
+
+      <a href="akun.html" title="Akun Saya">
+        <i class="fa-solid fa-user"></i>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main class="fade-in">
+  <section class="filter-produk">
+    <label for="kategori">Kategori:</label>
+    <select id="kategori">
+      <option value="semua">Semua</option>
+      <option value="pria">Pria</option>
+      <option value="wanita">Wanita</option>
+      <option value="anak">Anak</option>
+      <option value="couple">Couple</option>
+      <option value="kain">Kain Batik</option>
+      <option value="aksesoris">Aksesoris</option>
+    </select>
+  </section>
+
+  <section class="produk-grid" id="produkGrid">
+    <div class="produk-card" data-kategori="pria">
+      <div class="badge-promo">Diskon 20%</div>
+      <img src="img/Kemeja Radit Batik Pria .jpg" alt="Kemeja Radit Batik Pria" />
+      <h3>Kemeja Radit Batik Pria</h3>
+      <p>Rp 130.000</p>
+      <div class="rating">⭐⭐⭐⭐⭐</div>
+      <a href="produk-detail.html?id=3" class="btn-primary">Detail</a>
+    </div>
+
+    <div class="produk-card" data-kategori="wanita">
+      <img src="img/Jamy Outer Batik Wanita.jpg" alt="Jamy Outer Batik Wanita" />
+      <h3>Jamy Outer Batik Wanita</h3>
+      <p>Rp 145.000</p>
+      <div class="rating">⭐⭐⭐⭐☆</div>
+      <a href="produk-detail.html?id=9" class="btn-primary">Detail</a>
+    </div>
+
+    <div class="produk-card" data-kategori="kain">
+      <img src="img/Batik Sekar Jagad.jpg" alt="Batik Sekar Jagad" />
+      <h3>Batik Sekar Jagad</h3>
+      <p>Rp 250.000</p>
+      <div class="rating">⭐⭐⭐⭐⭐</div>
+      <a href="produk-detail.html?id=14" class="btn-primary">Detail</a>
+    </div>
+
+    <div class="produk-card" data-kategori="anak">
+      <img src="img/Dress Batik Anak.jpg" alt="Dres Batik Anak" />
+      <h3>Dres Batik Anak</h3>
+      <p>Rp 100.000</p>
+      <div class="rating">⭐⭐⭐⭐☆</div>
+      <a href="produk-detail.html?id=4" class="btn-primary">Detail</a>
+    </div>
+
+    <div class="produk-card" data-kategori="aksesoris">
+      <img src="img/Bros Batik.jpg" alt="Bros Batik" />
+      <h3>Bros Batik</h3>
+      <p>Rp 8.000</p>
+      <div class="rating">⭐⭐⭐⭐⭐</div>
+      <a href="produk-detail.html?id=5" class="btn-primary">Detail</a>
+    </div>
+
+    <div class="produk-card" data-kategori="wanita">
+      <img src="img/Reta Dress Batik Wanita.jpg" alt="Reta Dress Batik Wanita" />
+      <h3>Reta Dress Batik Wanita</h3>
+      <p>Rp 150.000</p>
+      <div class="rating">⭐⭐⭐⭐☆</div>
+      <a href="produk-detail.html?id=11" class="btn-primary">Detail</a>
+    </div>
+
+    <div class="produk-card" data-kategori="wanita">
+      <img src="img/Gemi Rok Batik Wanita.jpg" alt="Gemi Rok Batik Wanita" />
+      <h3>Gemi Rok Batik Wanita</h3>
+      <p>Rp 130.000</p>
+      <div class="rating">⭐⭐⭐☆☆</div>
+      <a href="produk-detail.html?id=7" class="btn-primary">Detail</a>
+    </div>
+
+    <div class="produk-card" data-kategori="pria">
+      <img src="img/Kemeja Batik Pria Robin.jpg" alt="Kemeja Batik Pria Robin" />
+      <h3>Kemeja Batik Pria Robin</h3>
+      <p>Rp 130.000</p>
+      <div class="rating">⭐⭐⭐⭐☆</div>
+      <a href="produk-detail.html?id=5" class="btn-primary">Detail</a>
+    </div>
+
+    <div class="produk-card" data-kategori="couple">
+      <img src="img/Batik Set Couple Family.jpg" alt="Batik Set Couple Family" />
+      <h3>Batik Set Couple Family</h3>
+      <p>Rp 150.000</p>
+      <div class="rating">⭐⭐⭐⭐☆</div>
+      <a href="produk-detail.html?id=2" class="btn-primary">Detail</a>
+    </div>
+
+     <div class="produk-card" data-kategori="aksesoris">
+      <img src="img/Dompet Batik Kosmetik.jpg" alt="Dompet Batik Kosmetik" />
+      <h3>Dompet Batik Kosmetik</h3>
+      <p>Rp 36.000</p>
+      <div class="rating">⭐⭐⭐⭐☆</div>
+      <a href="produk-detail.html?id=13" class="btn-primary">Detail</a>
+    </div>
+
+    <div class="produk-card" data-kategori="couple">
+      <img src="img/BBC Batik Family Set.jpg" alt="BBC Batik Family Set" />
+      <h3>BBC Batik Family Set</h3>
+      <p>Rp 180.000</p>
+      <div class="rating">⭐⭐⭐☆☆</div>
+      <a href="produk-detail.html?id=15" class="btn-primary">Detail</a>
+    </div>
+
+     <div class="produk-card" data-kategori="anak">
+      <img src="img/Batik Anak Tomi Lemi.jpg" alt="Batik Anak Tomi Lemi" />
+      <h3>Batik Anak Tomi Lemi</h3>
+      <p>Rp 120.000</p>
+      <div class="rating">⭐⭐⭐☆☆</div>
+      <a href="produk-detail.html?id=16" class="btn-primary">Detail</a>
+    </div>
+    
+    <div class="produk-card" data-kategori="wanita">
+      <img src="img/Nexa Atasan Batik Wanita.jpg" alt="Nexa Atasan Batik Wanita" />
+      <h3>Nexa Atasan Batik Wanita</h3>
+      <p>Rp 130.000</p>
+      <div class="rating">⭐⭐⭐⭐⭐</div>
+      <a href="produk-detail.html?id=17" class="btn-primary">Detail</a>
+    </div>
+
+    <div class="produk-card" data-kategori="kain">
+      <img src="img/Kain Batik Parang.jpg" alt="Kain Batik Parang" />
+      <h3>Kain Batik Parang Eksklusif</h3>
+      <p>Rp 280.000</p>
+      <div class="rating">⭐⭐⭐⭐☆</div>
+      <a href="produk-detail.html?id=8" class="btn-primary">Detail</a>
+    </div>
+
+    <div class="produk-card" data-kategori="wanita">
+      <img src="img/Bira Long Atasan Batik Wanita.jpg" alt="Bira Long Atasan Batik Wanita" />
+      <h3>Bira Long Atasan Batik Wanita</h3>
+      <p>Rp 135.000</p>
+      <div class="rating">⭐⭐⭐⭐☆</div>
+      <a href="produk-detail.html?id=1" class="btn-primary">Detail</a>
+    </div>
+
+    <div class="produk-card" data-kategori="kain">
+      <img src="img/Kain Batik Kawung.jpeg" alt="Kain Batik Kawung" />
+      <h3>Kain Batik Kawung</h3>
+      <p>Rp 275.000</p>
+      <div class="rating">⭐⭐⭐⭐☆</div>
+      <a href="produk-detail.html?id=10" class="btn-primary">Detail</a>
+    </div>
+
+    <div class="produk-card" data-kategori="pria">
+      <img src="img/Kemeja Adam Batik Pria.jpg" alt="Kemeja Adam Batik Pria" />
+      <h3>Kemeja Adam Batik Pria</h3>
+      <p>Rp 135.000</p>
+      <div class="rating">⭐⭐⭐⭐☆</div>
+      <a href="produk-detail.html?id=12" class="btn-primary">Detail</a>
+    </div>
+
+    <div class="produk-card" data-kategori="anak">
+      <img src="img/Cela Euro Batik Anak.jpg" alt="Cela Euro Batik Anak" />
+      <h3>Cela Euro Batik Anak</h3>
+      <p>Rp 100.000</p>
+      <div class="rating">⭐⭐⭐⭐☆</div>
+      <a href="produk-detail.html?id=18" class="btn-primary">Detail</a>
+    </div>
+
+   <div class="produk-card" data-kategori="aksesoris">
+      <img src="img/Ekletya Bandana Batik.jpg" alt="Ekletya Bandana Batik" />
+      <h3>Ekletya Bandana Batik</h3>
+      <p>Rp 25.000</p>
+      <div class="rating">⭐⭐⭐⭐☆</div>
+      <a href="produk-detail.html?id=19" class="btn-primary">Detail</a>
+    </div>
+
+   <div class="produk-card" data-kategori="wanita">
+      <img src="img/Bibi Pants Celana Wanita Batik .jpg" alt=" Bibi Pants Celana Wanita Batik " />
+      <h3> Bibi Pants Celana Wanita Batik </h3>
+      <p>Rp 135.000</p>
+      <div class="rating">⭐⭐⭐⭐☆</div>
+      <a href="produk-detail.html?id=20" class="btn-primary">Detail</a>
+    </div>
+
+   <div class="produk-card" data-kategori="couple">
+      <img src="img/Set Batik Family.jpg" alt="Set Batik Family" />
+      <h3>Set Batik Family</h3>
+      <p>Rp 160.000</p>
+      <div class="rating">⭐⭐⭐⭐☆</div>
+      <a href="produk-detail.html?id=21" class="btn-primary">Detail</a>
+    </div>
+  </section>
+
+  <div class="pagination" id="pagination"></div>
+</main>
+
+<footer>
+  <p><strong>Evercloth © 2025</strong></p>
+  <address>Tangerang Selatan</address>
+  <p><a href="#">FAQ</a> | <a href="#">Kebijakan Pengembalian</a> | <a href="#">Syarat &amp; Ketentuan</a></p>
+  <p><a href="#">Facebook</a> | <a href="#">Instagram</a> | <a href="#">Twitter</a></p>
+  <strong>Jam Operasional: Senin - Sabtu, 07.00 - 21.00 WIB</strong>
+</footer>
+
+<a class="live-chat-btn" href="https://wa.me/6283160982717" target="_blank" aria-label="Chat WhatsApp Customer Support">💬 Chat CS</a>
+
+<script src="script.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const searchInput = document.getElementById("searchInput");
+    const produkGrid = document.getElementById("produkGrid");
+    const produkCards = Array.from(produkGrid.querySelectorAll(".produk-card"));
+
+    if (searchInput) {
+      searchInput.addEventListener("input", function () {
+        const query = searchInput.value.toLowerCase();
+
+        produkCards.forEach(function (card) {
+          const namaProduk = card.querySelector("h3")?.textContent.toLowerCase() || "";
+          if (namaProduk.includes(query)) {
+            card.style.display = "block";
+          } else {
+            card.style.display = "none";
+          }
+        });
+      });
+    }
+  });
+</script>
+<button onclick="tambahKeKeranjang('Kemeja Batik Sogan Pria', 320000)">Tambah ke Keranjang</button>
+
+<script>
+function tambahKeKeranjang(nama, harga) {
+  let keranjang = JSON.parse(localStorage.getItem("keranjang")) || [];
+
+  const index = keranjang.findIndex(item => item.nama === nama);
+  if (index > -1) {
+    keranjang[index].jumlah += 1;
+  } else {
+    keranjang.push({ nama, harga, jumlah: 1 });
+  }
+
+  localStorage.setItem("keranjang", JSON.stringify(keranjang));
+  alert("Produk ditambahkan ke keranjang!");
+}
+</script>
+
+</body>
+</html>

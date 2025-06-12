@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Keranjang Belanja - Batik Nawilis</title>
+  
+  <link rel="stylesheet" href="style.css" />
+  
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-top">
+    <div class="logo">
+      <a href="index.html" class="logo-link">
+        <img src="img/logo.jpg" alt="Logo Batik Nawilis" class="logo-img" />
+        <span class="logo-text">EVERCLOTH</span>
+      </a>
+    </div>
+
+    <nav class="nav-desktop" aria-label="Navigasi utama">
+      <ul class="nav-menu">
+        <li><a href="index.html">Beranda</a></li>
+        <li><a href="produk.html">Produk</a></li>
+        <li><a href="tentang.html">Tentang Kami</a></li>
+        <li><a href="kontak.html">Kontak</a></li>
+      </ul>
+    </nav>
+
+    <div class="header-right">
+      <div class="search-box">
+  <input type="search" id="searchInput" placeholder="Cari produk..." />
+  <i class="fa fa-search"></i>
+</div>
+
+      <a href="keranjang.html" title="Keranjang" class="icon-with-badge">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span class="cart-badge">3</span>
+      </a>
+
+      <a href="akun.html" title="Akun Saya">
+        <i class="fa-solid fa-user"></i>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main class="content">
+  <h1>Keranjang Belanja</h1>
+
+  <table class="cart-table">
+    <thead>
+      <tr>
+        <th>Produk</th>
+        <th>Harga</th>
+        <th>Jumlah</th>
+        <th>Total</th>
+        <th>Aksi</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Kemeja Batik Sogan Pria</td>
+        <td>Rp320.000</td>
+        <td><input type="number" value="1" min="1" aria-label="Jumlah Kemeja Batik" /></td>
+        <td>Rp320.000</td>
+        <td><button class="btn-hapus">Hapus</button></td>
+      </tr>
+      <tr>
+        <td>Kain Batik Mega Mendung</td>
+        <td>Rp300.000</td>
+        <td><input type="number" value="2" min="1" aria-label="Jumlah Kain Batik" /></td>
+        <td>Rp600.000</td>
+        <td><button class="btn-hapus">Hapus</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="cart-summary">
+    <p><strong>Total Belanja:</strong> Rp920.000</p>
+    <a href="checkout.html" class="btn-primary">Lanjut ke Pembayaran</a>
+  </div>
+</main>
+
+<footer>
+  <p><strong>Evercloth © 2025</strong></p>
+  <address>Tangerang Selatan</address>
+  <p><a href="#">FAQ</a> | <a href="#">Kebijakan Pengembalian</a> | <a href="#">Syarat &amp; Ketentuan</a></p>
+  <p><a href="#">Facebook</a> | <a href="#">Instagram</a> | <a href="#">Twitter</a></p>
+  <strong>Jam Operasional: Senin - Sabtu, 07.00 - 21.00 WIB</strong>
+</footer>
+
+<a class="live-chat-btn" href="https://wa.me/6283160982717" target="_blank" aria-label="Chat WhatsApp Customer Support">💬 Chat CS</a>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const tbody = document.querySelector(".cart-table tbody");
+  const totalDisplay = document.querySelector(".cart-summary p");
+  let total = 0;
+  let keranjang = JSON.parse(localStorage.getItem("keranjang")) || [];
+
+  if (keranjang.length === 0) {
+    tbody.innerHTML = "<tr><td colspan='5'>Keranjang masih kosong.</td></tr>";
+    totalDisplay.innerHTML = `<strong>Total Belanja:</strong> Rp0`;
+    return;
+  }
+
+  tbody.innerHTML = ""; 
+
+  keranjang.forEach((item, index) => {
+    const hargaAngka = parseInt(item.harga.replace(/[^\d]/g, ""));
+    const totalItem = hargaAngka * item.jumlah;
+    total += totalItem;
+
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td>${item.nama}</td>
+      <td>${item.harga}</td>
+      <td><input type="number" value="${item.jumlah}" min="1" data-index="${index}" /></td>
+      <td>Rp${totalItem.toLocaleString("id-ID")}</td>
+      <td><button class="btn-hapus" data-index="${index}">Hapus</button></td>
+    `;
+    tbody.appendChild(tr);
+  });
+
+  totalDisplay.innerHTML = `<strong>Total Belanja:</strong> Rp${total.toLocaleString("id-ID")}`;
+
+  tbody.querySelectorAll("input[type='number']").forEach(input => {
+    input.addEventListener("input", function () {
+      const i = this.dataset.index;
+      keranjang[i].jumlah = parseInt(this.value);
+      localStorage.setItem("keranjang", JSON.stringify(keranjang));
+      location.reload(); 
+    });
+  });
+
+  tbody.querySelectorAll(".btn-hapus").forEach(btn => {
+    btn.addEventListener("click", function () {
+      const i = this.dataset.index;
+      keranjang.splice(i, 1);
+      localStorage.setItem("keranjang", JSON.stringify(keranjang));
+      location.reload();
+    });
+  });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    const keranjang = JSON.parse(localStorage.getItem("keranjang")) || [];
+    const badge = document.querySelector(".cart-badge");
+    if (badge) {
+      const totalJumlah = keranjang.reduce((sum, item) => sum + (item.jumlah || 1), 0);
+      badge.textContent = totalJumlah > 0 ? totalJumlah : "";
+    }
+  });
+</script>
+
+</body>
+</html>

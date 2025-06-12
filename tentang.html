@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tentang Kami - Evercloth</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="style.css" rel="stylesheet" />
+  <style>
+    :root {
+      --coklat-tua: #5d4037;
+      --coklat-muda: #bc8a5f;
+      --cream: #fffaf5;
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      --radius: 16px;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: var(--cream);
+      color: #3e2723;
+    }
+
+    .tentang-kami {
+      background-color: var(--cream);
+      padding: 2rem 1.5rem;
+      max-width: 960px;
+      margin: 2rem auto;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      animation: fadeIn 0.6s ease-in-out;
+    }
+
+    .intro-box {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .intro-box h2 {
+      font-size: 1.8rem;
+      color: var(--coklat-tua);
+      margin-bottom: 1rem;
+    }
+
+    .intro-box p {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #444;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .info-grid {
+      display: grid;
+      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+
+    .info-card {
+      background-color: white;
+      border-left: 5px solid var(--coklat-muda);
+      padding: 1.5rem;
+      border-radius: var(--radius);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+      transition: transform 0.3s ease;
+    }
+
+    .info-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .info-card h3 {
+      margin-top: 0;
+      color: var(--coklat-tua);
+    }
+
+    .info-card ul {
+      padding-left: 1.2rem;
+    }
+
+    .info-card li {
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+    }
+
+    .foto-tim {
+      text-align: center;
+      margin-top: 3rem;
+      background-color: white;
+      padding: 2rem;
+      border-radius: var(--radius);
+      max-width: 960px;
+      margin-inline: auto;
+      box-shadow: var(--shadow);
+    }
+
+    .foto-tim img {
+      width: 100%;
+      max-width: 350px;
+      border-radius: 12px;
+      margin-top: 1rem;
+    }
+
+    footer {
+      background-color: var(--coklat-tua);
+      color: white;
+      text-align: center;
+      padding: 2rem 1rem;
+      margin-top: 3rem;
+      font-size: 14px;
+    }
+
+    footer a {
+      color: #ffe9d9;
+      text-decoration: none;
+      margin: 0 0.4rem;
+    }
+
+    footer a:hover {
+      color: var(--coklat-muda);
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+  </style>
+</head>
+
+<body>
+<header class="site-header">
+  <div class="container header-top">
+    <div class="logo">
+      <a href="index.html" class="logo-link">
+        <img src="img/logo.jpg" alt="Logo Batik Nawilis" class="logo-img" />
+        <span class="logo-text">EVERCLOTH</span>
+      </a>
+    </div>
+
+    <nav class="nav-desktop" aria-label="Navigasi utama">
+      <ul class="nav-menu">
+        <li><a href="index.html">Beranda</a></li>
+        <li><a href="produk.html">Produk</a></li>
+        <li><a class="active" href="#">Tentang Kami</a></li>
+        <li><a href="kontak.html">Kontak</a></li>
+      </ul>
+    </nav>
+
+    <div class="header-right">
+      <div class="search-box">
+        <input type="search" placeholder="Cari produk..." />
+        <i class="fa fa-search"></i>
+      </div>
+
+      <a href="keranjang.html" title="Keranjang" class="icon-with-badge">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span class="cart-badge">3</span>
+      </a>
+
+      <a href="akun.html" title="Akun Saya">
+        <i class="fa-solid fa-user"></i>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="tentang-kami">
+    <div class="intro-box">
+      <h2><i class="fa-solid fa-shirt"></i> Tentang Evercloth</h2>
+      <p><strong>Evercloth</strong> adalah toko fashion batik modern yang memadukan nilai-nilai budaya dengan desain kekinian. Kami menghadirkan koleksi busana batik berkualitas tinggi untuk pria, wanita, dan anak-anak, yang cocok dikenakan untuk acara formal maupun kasual.</p>
+    </div>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>🎯 Visi</h3>
+        <p>Menjadi brand batik modern terpercaya yang dicintai masyarakat Indonesia dan dikenal secara global.</p>
+      </div>
+
+      <div class="info-card">
+        <h3>🎯 Misi</h3>
+        <ul>
+          <li>🌿 Melestarikan warisan budaya melalui desain batik yang relevan.</li>
+          <li>🤝 Mendukung UMKM pengrajin batik lokal di berbagai daerah.</li>
+          <li>👗 Menghadirkan produk stylish, nyaman, dan terjangkau untuk seluruh keluarga.</li>
+        </ul>
+      </div>
+
+      <div class="info-card">
+        <h3>🌟 Nilai-Nilai Kami</h3>
+        <ul>
+          <li><strong>Inspiratif:</strong> Mengangkat motif batik menjadi tren fashion modern.</li>
+          <li><strong>Inklusif:</strong> Tersedia untuk semua usia dan ukuran.</li>
+          <li><strong>Berkelanjutan:</strong> Mengutamakan bahan ramah lingkungan dan kerja sama jangka panjang.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="foto-tim">
+    <h3>Tim & Pengrajin Evercloth</h3>
+    <p>Evercloth bekerja sama dengan pengrajin batik lokal untuk menghasilkan koleksi eksklusif yang penuh makna dan keindahan.</p>
+    <img src="img/Pengrajin Batik.jpg" alt="Pengrajin Batik Evercloth" />
+  </section>
+</main>
+
+<footer>
+  <p><strong>Evercloth © 2025</strong></p>
+  <address>Tangerang Selatan</address>
+  <p><a href="#">FAQ</a> | <a href="#">Kebijakan Pengembalian</a> | <a href="#">Syarat &amp; Ketentuan</a></p>
+  <p><a href="#">Facebook</a> | <a href="#">Instagram</a> | <a href="#">Twitter</a></p>
+  <strong>Jam Operasional: Senin - Sabtu, 07.00 - 21.00 WIB</strong>
+</footer>
+
+<a class="live-chat-btn" href="https://wa.me/6283160982717" target="_blank" aria-label="Chat WhatsApp Customer Support">💬 Chat CS</a>
+
+<script src="script.js"></script>
+</body>
+</html>

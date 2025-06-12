@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Detail Produk - Batik Nawilis</title>
+  <style>
+    :root {
+      --warna-utama: #8d5a3a;
+      --warna-cerah: #fffaf5;
+      --radius: 12px;
+      --shadow: 0 4px 8px rgba(0,0,0,0.08);
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: var(--warna-cerah);
+      color: #333;
+    }
+
+    .breadcrumb {
+      max-width: 1000px;
+      margin: 2rem auto 0;
+      padding: 0 2rem;
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    .breadcrumb a {
+      color: #007bff;
+      text-decoration: none;
+    }
+
+    #detailContainer {
+      max-width: 1000px;
+      margin: 1rem auto;
+      background: white;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      animation: fadeIn 0.4s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    img#gambarProduk {
+      width: 280px;
+      height: 280px;
+      object-fit: cover;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      flex-shrink: 0;
+    }
+
+    .info-produk {
+      flex: 1 1 350px;
+    }
+
+    h1 {
+      margin-top: 0;
+      font-size: 1.8rem;
+      color: var(--warna-utama);
+    }
+
+    .harga {
+      font-weight: bold;
+      font-size: 1.3em;
+      color: var(--warna-utama);
+      margin: 0.5rem 0;
+    }
+
+    .rating {
+      font-size: 1.2em;
+      color: #f5a623;
+      margin-bottom: 1rem;
+    }
+
+    #stokProduk {
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+    }
+
+    .tab-container button {
+      padding: 8px 12px;
+      border: none;
+      background-color: #eee;
+      margin-right: 5px;
+      cursor: pointer;
+      border-radius: 6px;
+    }
+
+    .tab-container button.active {
+      background-color: var(--warna-utama);
+      color: white;
+    }
+
+    .tab-content {
+      margin-top: 1rem;
+      display: none;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    a.kembali {
+      display: inline-block;
+      margin: 1rem 0;
+      background-color: var(--warna-utama);
+      color: white;
+      padding: 10px 16px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    a.kembali:hover {
+      background-color: #6e432a;
+    }
+
+    button.beli-btn {
+      background: linear-gradient(to right, #8d5a3a, #b88a66);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 1em;
+      border-radius: var(--radius);
+      cursor: pointer;
+      margin-top: 1rem;
+      transition: 0.3s;
+    }
+
+    button.beli-btn:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+    }
+
+    .testimoni-section {
+      width: 100%;
+      background-color: #fff8f1;
+      border-radius: var(--radius);
+      padding: 2rem;
+      box-shadow: var(--shadow);
+      margin-top: 2rem;
+    }
+
+    .testimoni-section h2 {
+      color: var(--warna-utama);
+      margin-bottom: 1.5rem;
+      font-size: 1.5rem;
+      border-bottom: 2px solid var(--warna-utama);
+      display: inline-block;
+      padding-bottom: 5px;
+    }
+
+    .testimoni {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      background: white;
+      border-radius: 10px;
+      padding: 1rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+      margin-bottom: 1rem;
+    }
+
+    .testimoni-icon {
+      width: 45px;
+      height: 45px;
+      background: #eee;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 1.1rem;
+      color: #555;
+    }
+
+    .testimoni-content {
+      flex: 1;
+    }
+
+    .testimoni-content p {
+      margin: 0.2rem 0;
+    }
+
+    .testimoni-content p.komentar {
+      font-style: italic;
+      color: #444;
+    }
+
+    .testimoni-content p.nama {
+      font-weight: bold;
+      margin-top: 5px;
+      color: var(--warna-utama);
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 768px) {
+      #detailContainer {
+        flex-direction: column;
+        padding: 1rem;
+      }
+    }
+    .btn-group {
+      display: flex;
+      gap: 10px;
+      margin-top: 1rem;
+    }
+
+    .keranjang-btn:hover {
+      background-color: #d9963f;
+    }
+
+    .rating-bintang {
+      color: #f5a623;
+      font-size: 1rem;
+      margin-top: 4px;
+    }
+
+  </style>
+</head>
+
+<body>
+  <nav class="breadcrumb">
+    <a href="index.html">Beranda</a> &gt; 
+    <a href="produk.html">Produk</a> &gt; 
+    <span id="breadcrumbNama">Detail</span>
+  </nav>
+
+  <div id="detailContainer">
+    <img id="gambarProduk" src="" alt="Gambar Produk" />
+    <div class="info-produk">
+      <a href="produk.html" class="kembali">← Kembali ke Produk</a>
+      <h1 id="namaProduk">Memuat...</h1>
+      <div class="harga" id="hargaProduk"></div>
+      <div class="rating" id="ratingProduk"></div>
+      <div id="stokProduk"></div>
+
+      <div class="tab-container">
+        <button class="tab-btn active" onclick="showTab('deskripsi')">Deskripsi</button>
+        <button class="tab-btn" onclick="showTab('spesifikasi')">Spesifikasi</button>
+      </div>
+      <div class="tab-content active" id="deskripsiProduk"></div>
+      <div class="tab-content" id="spesifikasiProduk"></div>
+
+      <div class="btn-group">
+        <button class="beli-btn" id="btnBeli">Beli Sekarang</button>
+        <button class="beli-btn" id="btnKeranjang">+ Keranjang</button>
+      </div>
+    </div>
+
+    <section class="testimoni-section">
+      <h2>Testimoni Pelanggan</h2>
+      <div id="testimoniContainer"></div>
+    </section>
+   </div>
+
+  <script>
+  const produkData = {
+  1: {
+    nama: "Bira Long Atasan Batik Wanita",
+    gambar: "img/Bira Long Atasan Batik Wanita.jpg",
+    harga: "Rp 135.000",
+    rating: "⭐⭐⭐⭐☆",
+    stok: 100,
+    deskripsi: "Atasan panjang batik dengan desain feminin yang cocok untuk kegiatan formal maupun santai.",
+    spesifikasi: `
+      <ul>
+        <li><strong>Bahan:</strong> Katun halus</li>
+        <li><strong>Ukuran:</strong> S, M, L, XL</li>
+        <li><strong>Model:</strong> Long blouse, adem, elegan</li>
+      </ul>
+    `,
+    testimoni: [
+      { nama: "Lia", komentar: "Bahannya lembut dan nyaman banget dipakai!", rating: 5 },
+      { nama: "Sari", komentar: "Pas untuk ke kantor dan acara keluarga.", rating: 4 }
+    ]
+  },
+  2: {
+    nama: "Batik Set Couple Family",
+    gambar: "img/Batik Set Couple Family.jpg",
+    harga: "Rp 150.000",
+    rating: "⭐⭐⭐⭐☆",
+    stok: 50,
+    deskripsi: "Setelan batik seragam keluarga yang modern dan nyaman untuk momen kebersamaan.",
+    spesifikasi: `
+      <ul>
+        <li><strong>Bahan:</strong> Katun silky</li>
+        <li><strong>Ukuran:</strong> Pria (M-XL), Wanita (S-XL), Anak (2-10 thn)</li>
+        <li><strong>Model:</strong> Serasi, nyaman dipakai</li>
+      </ul>
+    `,
+    testimoni: [
+      { nama: "Nina", komentar: "Keluarga jadi tampil kompak dan stylish!", rating: 5 },
+      { nama: "Joko", komentar: "Bagus banget buat kondangan bareng keluarga.", rating: 5 }
+    ]
+  },
+  3: {
+    nama: "Kemeja Radit Batik Pria",
+    gambar: "img/Kemeja Radit Batik Pria .jpg",
+    harga: "Rp 130.000",
+    rating: "⭐⭐⭐⭐⭐",
+    stok: 75,
+    deskripsi: "Kemeja batik pria dengan gaya kontemporer dan potongan regular fit.",
+    spesifikasi: `
+      <ul>
+        <li><strong>Bahan:</strong> Katun dobby premium</li>
+        <li><strong>Ukuran:</strong> M, L, XL, XXL</li>
+        <li><strong>Model:</strong> Regular fit, adem, cocok untuk kerja</li>
+      </ul>
+    `,
+    testimoni: [
+      { nama: "Andi", komentar: "Nyaman banget dipakai dan jahitannya rapi.", rating: 5 },
+      { nama: "Raka", komentar: "Warnanya elegan dan cocok untuk ngantor.", rating: 4 }
+    ]
+  },
+  4: {
+    nama: "Dress Batik Anak",
+    gambar: "img/Dress Batik Anak.jpg",
+    harga: "Rp 100.000",
+    rating: "⭐⭐⭐⭐☆",
+    stok: 60,
+    deskripsi: "Dress batik anak perempuan yang lucu dan nyaman untuk dipakai sehari-hari.",
+    spesifikasi: `
+      <ul>
+        <li><strong>Bahan:</strong> Katun adem</li>
+        <li><strong>Ukuran:</strong> 2–10 tahun</li>
+        <li><strong>Model:</strong> Dress A-line, ringan, mudah dipakai</li>
+      </ul>
+    `,
+    testimoni: [
+      { nama: "Rina", komentar: "Anakku suka banget, bahannya adem!", rating: 5 },
+      { nama: "Dewi", komentar: "Lucu banget, cocok buat acara keluarga.", rating: 4 }
+    ]
+  },
+  5: {
+    nama: "Bros Batik",
+    gambar: "img/Bros Batik.jpg",
+    harga: "Rp 8.000",
+    rating: "⭐⭐⭐⭐⭐",
+    stok: 200,
+    deskripsi: "Aksesoris bros dengan motif batik khas, cocok untuk mempercantik penampilan.",
+    spesifikasi: `
+      <ul>
+        <li><strong>Bahan:</strong> Logam dan kain batik</li>
+        <li><strong>Ukuran:</strong> Diameter 4 cm</li>
+        <li><strong>Model:</strong> Handmade, motif beragam</li>
+      </ul>
+    `,
+    testimoni: [
+      { nama: "Tari", komentar: "Murah tapi kelihatan mewah!", rating: 5 },
+      { nama: "Yuni", komentar: "Cocok banget buat hijab dan blazer.", rating: 5 }
+    ]
+  },
+
+  6: {
+  nama: "Kemeja Batik Pria Robin",
+  gambar: "img/Kemeja Batik Pria Robin.jpg",
+  harga: "Rp 130.000",
+  rating: "⭐⭐⭐⭐☆",
+  stok: 60,
+  deskripsi: "Kemeja batik pria dengan desain elegan dan motif modern yang cocok untuk kerja maupun acara santai.",
+  spesifikasi: `
+    <ul>
+      <li><strong>Bahan:</strong> Katun halus premium</li>
+      <li><strong>Ukuran:</strong> M, L, XL</li>
+      <li><strong>Model:</strong> Slim fit, ringan dan menyerap keringat</li>
+    </ul>
+  `,
+  testimoni: [
+    { nama: "Danu", komentar: "Kemejanya adem dan potongannya pas!", rating: 5 },
+    { nama: "Bayu", komentar: "Warna sesuai gambar, recommended buat kerja.", rating: 4 }
+  ]
+},
+  7: {
+    nama: "Gemi Rok Batik Wanita",
+    gambar: "img/Gemi Rok Batik Wanita.jpg",
+    harga: "Rp 130.000",
+    rating: "⭐⭐⭐☆☆",
+    stok: 40,
+    deskripsi: "Rok batik wanita dengan desain simple dan motif tradisional yang cocok dipadukan dengan berbagai atasan.",
+    spesifikasi: `
+      <ul>
+        <li><strong>Bahan:</strong> Katun lembut</li>
+        <li><strong>Ukuran:</strong> S, M, L, XL</li>
+        <li><strong>Model:</strong> A-line, pinggang karet belakang, nyaman untuk dipakai seharian</li>
+      </ul>
+    `,
+    testimoni: [
+      { nama: "Putri", komentar: "Motifnya cantik tapi bahannya agak tipis.", rating: 3 },
+      { nama: "Dina", komentar: "Cocok buat dipakai ke kampus, ringan dan nyaman.", rating: 4 }
+    ]
+  },
+
+  8: {
+  nama: "Kain Batik Parang Eksklusif",
+  gambar: "img/Kain Batik Parang.jpg",
+  harga: "Rp 280.000",
+  rating: "⭐⭐⭐⭐☆",
+  stok: 25,
+  deskripsi: "Kain batik motif parang klasik dengan kualitas eksklusif, cocok untuk dijahit menjadi busana formal maupun modern.",
+  spesifikasi: `
+    <ul>
+      <li><strong>Bahan:</strong> Katun primisima halus</li>
+      <li><strong>Ukuran:</strong> Panjang 2.5 meter, lebar 115 cm</li>
+      <li><strong>Pewarnaan:</strong> Cap manual dengan warna tahan lama</li>
+    </ul>
+  `,
+  testimoni: [
+    { nama: "Sari", komentar: "Motifnya mewah dan bahan enak dijahit!", rating: 5 },
+    { nama: "Tomi", komentar: "Sedikit mahal tapi sebanding dengan kualitasnya.", rating: 4 }
+  ]
+},
+9: {
+  nama: "Jamy Outer Batik Wanita",
+  gambar: "img/Jamy Outer Batik Wanita.jpg",
+  harga: "Rp 145.000",
+  rating: "⭐⭐⭐⭐☆",
+  stok: 40,
+  deskripsi: "Outer batik wanita dengan desain modern, cocok dipadukan dengan inner polos untuk tampilan stylish namun tetap anggun.",
+  spesifikasi: `
+    <ul>
+      <li><strong>Bahan:</strong> Rayon batik cap</li>
+      <li><strong>Ukuran:</strong> All size fit to L</li>
+      <li><strong>Model:</strong> Outer loose dengan bukaan depan tanpa kancing</li>
+    </ul>
+  `,
+  testimoni: [
+    { nama: "Wulan", komentar: "Keren banget kalau dipadukan sama tanktop, bahannya adem!", rating: 5 },
+    { nama: "Dina", komentar: "Modelnya simpel tapi tetap elegan, suka!", rating: 4 }
+  ]
+},
+10: {
+  nama: "Kain Batik Kawung",
+  gambar: "img/Kain Batik Kawung.jpeg",
+  harga: "Rp 275.000",
+  rating: "⭐⭐⭐⭐☆",
+  stok: 35,
+  deskripsi: "Kain batik motif kawung klasik dengan sentuhan warna elegan. Cocok untuk dijahit menjadi busana pria maupun wanita.",
+  spesifikasi: `
+    <ul>
+      <li><strong>Bahan:</strong> Katun primisima</li>
+      <li><strong>Ukuran:</strong> 2 meter x 115 cm</li>
+      <li><strong>Motif:</strong> Kawung tradisional, teknik cap kombinasi tulis</li>
+    </ul>
+  `,
+  testimoni: [
+    { nama: "Tari", komentar: "Motifnya klasik banget, cocok untuk buat kebaya!", rating: 5 },
+    { nama: "Seno", komentar: "Kainnya halus dan nyaman, puas banget.", rating: 4 }
+  ]
+},
+11: {
+  nama: "Reta Dress Batik Wanita",
+  gambar: "img/Reta Dress Batik Wanita.jpg",
+  harga: "Rp 150.000",
+  rating: "⭐⭐⭐⭐☆",
+  stok: 60,
+  deskripsi: "Dress batik wanita dengan potongan A-line dan motif modern yang cocok untuk acara formal maupun kasual.",
+  spesifikasi: `
+    <ul>
+      <li><strong>Bahan:</strong> Katun viscose</li>
+      <li><strong>Ukuran:</strong> S, M, L, XL</li>
+      <li><strong>Model:</strong> A-line dress dengan resleting belakang</li>
+    </ul>
+  `,
+  testimoni: [
+    { nama: "Meta", komentar: "Modelnya manis banget! Suka sama bahannya juga.", rating: 5 },
+    { nama: "Lina", komentar: "Cocok buat kerja, warnanya tidak mencolok.", rating: 4 }
+  ]
+},
+12: {
+  nama: "Kemeja Adam Batik Pria",
+  gambar: "img/Kemeja Adam Batik Pria.jpg",
+  harga: "Rp 135.000",
+  rating: "⭐⭐⭐⭐☆",
+  stok: 80,
+  deskripsi: "Kemeja batik pria lengan pendek dengan motif semi-formal, cocok untuk kerja dan acara santai.",
+  spesifikasi: `
+    <ul>
+      <li><strong>Bahan:</strong> Katun halus premium</li>
+      <li><strong>Ukuran:</strong> M, L, XL, XXL</li>
+      <li><strong>Model:</strong> Regular fit, kancing depan, saku dada</li>
+    </ul>
+  `,
+  testimoni: [
+    { nama: "Yuda", komentar: "Nyaman banget buat ke kantor, bahannya adem!", rating: 5 },
+    { nama: "Rian", komentar: "Motifnya bagus, cutting-nya juga pas.", rating: 4 }
+  ]
+},
+13: {
+  nama: "Dompet Batik Kosmetik",
+  gambar: "img/Dompet Batik Kosmetik.jpg",
+  harga: "Rp 36.000",
+  rating: "⭐⭐⭐⭐☆",
+  stok: 120,
+  deskripsi: "Dompet multifungsi berbahan batik, cocok untuk menyimpan kosmetik, alat tulis, atau barang kecil lainnya.",
+  spesifikasi: `
+    <ul>
+      <li><strong>Bahan:</strong> Katun batik dengan lapisan dalam parasut</li>
+      <li><strong>Ukuran:</strong> 18 cm x 10 cm x 5 cm</li>
+      <li><strong>Fitur:</strong> Resleting kuat, motif random batik modern</li>
+    </ul>
+  `,
+  testimoni: [
+    { nama: "Salsa", komentar: "Praktis banget buat bawa make up, lucu juga!", rating: 5 },
+    { nama: "Dina", komentar: "Bisa dipakai buat banyak hal, recommended!", rating: 4 }
+  ]
+},
+14: {
+  nama: "Batik Sekar Jagad",
+  gambar: "img/Batik Sekar Jagad.jpg",
+  harga: "Rp 150.000",
+  rating: "⭐⭐⭐⭐⭐",
+  stok: 45,
+  deskripsi: "Kain batik tulis motif Sekar Jagad yang melambangkan keindahan dan keragaman budaya Indonesia.",
+  spesifikasi: `
+    <ul>
+      <li><strong>Bahan:</strong> Katun primisima</li>
+      <li><strong>Ukuran:</strong> 2,25 meter x 1,15 meter</li>
+      <li><strong>Teknik:</strong> Batik tulis</li>
+    </ul>
+  `,
+  testimoni: [
+    { nama: "Anita", komentar: "Motifnya sangat indah dan kualitas bahannya bagus!", rating: 5 },
+    { nama: "Rani", komentar: "Cocok buat acara formal, elegan banget.", rating: 5 }
+  ]
+},
+15: {
+  nama: "BBC Batik Family Set",
+  gambar: "img/BBC Batik Family Set.jpg",
+  harga: "Rp 380.000",
+  rating: "⭐⭐⭐⭐☆",
+  stok: 20,
+  deskripsi: "Pakaian batik seragam keluarga yang terdiri dari baju ayah, ibu, dan anak dengan motif senada.",
+  spesifikasi: `
+    <ul>
+      <li><strong>Isi Set:</strong> 1 baju pria, 1 baju wanita, 1 baju anak</li>
+      <li><strong>Bahan:</strong> Katun halus</li>
+      <li><strong>Motif:</strong> Motif klasik elegan</li>
+    </ul>
+  `,
+  testimoni: [
+    { nama: "Yusuf", komentar: "Keluarga saya suka banget. Motifnya bagus dan ukurannya pas.", rating: 4 },
+    { nama: "Maya", komentar: "Bahannya adem, nyaman dipakai seharian.", rating: 4 }
+  ]
+},
+16: {
+  nama: "Batik Anak Tomi Lemi",
+  gambar: "img/Batik Anak Tomi Lemi.jpg",
+  harga: "Rp 90.000",
+  rating: "⭐⭐⭐⭐☆",
+  stok: 65,
+  deskripsi: "Batik anak-anak dengan motif ceria dan warna menarik, nyaman dipakai untuk aktivitas sehari-hari.",
+  spesifikasi: `
+    <ul>
+      <li><strong>Ukuran:</strong> Tersedia S, M, L</li>
+      <li><strong>Bahan:</strong> Katun adem</li>
+      <li><strong>Model:</strong> Kemeja anak lengan pendek</li>
+    </ul>
+  `,
+  testimoni: [
+    { nama: "Nina", komentar: "Anakku suka banget bajunya, motifnya lucu!", rating: 5 },
+    { nama: "Darto", komentar: "Nyaman dan kualitasnya oke untuk anak.", rating: 4 }
+  ]
+},
+17: {
+  nama: "Nexa Atasan Batik Wanita",
+  gambar: "img/Nexa Atasan Batik Wanita.jpg",
+  harga: "Rp 110.000",
+  rating: "⭐⭐⭐⭐⭐",
+  stok: 60,
+  deskripsi: "Atasan batik wanita dengan desain modern dan elegan, cocok untuk acara formal maupun kasual.",
+  spesifikasi: `
+    <ul>
+      <li><strong>Bahan:</strong> Katun premium</li>
+      <li><strong>Ukuran:</strong> M, L, XL</li>
+      <li><strong>Fitur:</strong> Kancing depan, lengan puff, motif kontemporer</li>
+    </ul>
+  `,
+  testimoni: [
+    { nama: "Rina", komentar: "Bahannya adem dan potongannya pas di badan.", rating: 5 },
+    { nama: "Wulan", komentar: "Suka banget motifnya, terlihat elegan.", rating: 5 }
+  ]
+},
+18: {
+  nama: "Cela Euro Batik Anak",
+  gambar: "img/Cela Euro Batik Anak.jpg",
+  harga: "Rp 85.000",
+  rating: "⭐⭐⭐⭐☆",
+  stok: 50,
+  deskripsi: "Setelan batik anak yang nyaman dan lucu dengan desain warna cerah.",
+  spesifikasi: `
+    <ul>
+      <li><strong>Bahan:</strong> Katun halus</li>
+      <li><strong>Ukuran:</strong> Usia 3-10 tahun</li>
+      <li><strong>Fitur:</strong> Karet pinggang elastis, jahitan kuat</li>
+    </ul>
+  `,
+  testimoni: [
+    { nama: "Rosa", komentar: "Anak saya suka banget! Nyaman dipakai main.", rating: 4 },
+    { nama: "Andini", komentar: "Motifnya lucu dan ukurannya pas.", rating: 4 }
+  ]
+},
+19: {
+  nama: "Ekletya Bandana Batik",
+  gambar: "img/Ekletya Bandana Batik.jpg",
+  harga: "Rp 25.000",
+  rating: "⭐⭐⭐⭐☆",
+  stok: 150,
+  deskripsi: "Bandana dengan motif batik stylish, cocok untuk anak-anak hingga dewasa.",
+  spesifikasi: `
+    <ul>
+      <li><strong>Bahan:</strong> Katun batik elastis</li>
+      <li><strong>Ukuran:</strong> All size</li>
+      <li><strong>Fitur:</strong> Elastis dan ringan, berbagai pilihan motif</li>
+    </ul>
+  `,
+  testimoni: [
+    { nama: "Tari", komentar: "Lucu banget dipakai ke kampus!", rating: 4 },
+    { nama: "Yuni", komentar: "Motifnya menarik dan nyaman dipakai seharian.", rating: 4 }
+  ]
+},
+20: {
+  nama: "Bibi Pants Celana Wanita Batik",
+  gambar: "img/Bibi Pants Celana Wanita Batik.jpg",
+  harga: "Rp 120.000",
+  rating: "⭐⭐⭐⭐⭐",
+  stok: 80,
+  deskripsi: "Celana panjang wanita dengan motif batik modern, cocok untuk gaya kasual maupun formal.",
+  spesifikasi: `
+    <ul>
+      <li><strong>Bahan:</strong> Katun stretch</li>
+      <li><strong>Ukuran:</strong> S, M, L, XL</li>
+      <li><strong>Fitur:</strong> Pinggang karet, potongan lurus</li>
+    </ul>
+  `,
+  testimoni: [
+    { nama: "Tania", komentar: "Nyaman banget dipakai kerja!", rating: 5 },
+    { nama: "Mira", komentar: "Modelnya simpel tapi tetap elegan.", rating: 5 }
+  ]
+},
+21: {
+  nama: "Set Batik Family",
+  gambar: "img/Set Batik Family.jpg",
+  harga: "Rp 350.000",
+  rating: "⭐⭐⭐⭐⭐",
+  stok: 40,
+  deskripsi: "Pakaian batik seragam untuk seluruh keluarga, tampil kompak dan gaya di setiap acara.",
+  spesifikasi: `
+    <ul>
+      <li><strong>Isi:</strong> 1 atasan pria, 1 atasan wanita, 1 pakaian anak</li>
+      <li><strong>Bahan:</strong> Katun halus</li>
+      <li><strong>Ukuran:</strong> All size dewasa + ukuran anak</li>
+    </ul>
+  `,
+  testimoni: [
+    { nama: "Lusi", komentar: "Cocok buat foto keluarga, bahannya juga adem.", rating: 5 },
+    { nama: "Bayu", komentar: "Keren! Seragamnya bikin tambah kompak.", rating: 5 }
+  ]
+},
+
+  };
+
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get('id');
+  const produk = produkData[id];
+
+  function showTab(tab) {
+    document.querySelectorAll(".tab-content").forEach(el => el.classList.remove("active"));
+    document.getElementById(tab + "Produk").classList.add("active");
+
+    document.querySelectorAll(".tab-btn").forEach(btn => btn.classList.remove("active"));
+    event.target.classList.add("active");
+  }
+
+  if (produk) {
+    document.getElementById("namaProduk").textContent = produk.nama;
+    document.getElementById("breadcrumbNama").textContent = produk.nama;
+    document.getElementById("gambarProduk").src = produk.gambar;
+    document.getElementById("gambarProduk").alt = produk.nama;
+    document.getElementById("hargaProduk").textContent = produk.harga;
+    document.getElementById("ratingProduk").textContent = produk.rating;
+    document.getElementById("deskripsiProduk").textContent = produk.deskripsi;
+    document.getElementById("spesifikasiProduk").innerHTML = produk.spesifikasi;
+
+    if (produk.stok === 0) {
+      document.getElementById("stokProduk").textContent = "❌ Stok habis";
+      document.getElementById("btnBeli").disabled = true;
+      document.getElementById("btnKeranjang").disabled = true;
+    } else {
+      document.getElementById("stokProduk").textContent = `Stok tersedia: ${produk.stok}`;
+    }
+
+    const testiHTML = produk.testimoni.map(t => {
+  const bintang = t.rating ? "⭐".repeat(t.rating) : "";
+  return `
+    <div class="testimoni">
+      <div class="testimoni-icon">${t.nama.charAt(0)}</div>
+      <div class="testimoni-content">
+        <p class="komentar">"${t.komentar}"</p>
+        ${bintang ? `<p class="rating-bintang">${bintang}</p>` : ""}
+        <p class="nama">- ${t.nama}</p>
+      </div>
+    </div>
+  `;
+}).join('');
+document.getElementById("testimoniContainer").innerHTML = testiHTML;
+
+    document.getElementById('btnBeli').addEventListener('click', () => {
+      window.location.href = `checkout.html?id=${id}`;
+    });
+
+    document.getElementById('btnKeranjang').addEventListener('click', () => {
+  let keranjang = JSON.parse(localStorage.getItem('keranjang')) || [];
+
+  const sudahAda = keranjang.find(item => item.id === id);
+  if (!sudahAda) {
+    keranjang.push({
+      id,
+      nama: produk.nama,
+      harga: produk.harga,
+      gambar: produk.gambar,
+      jumlah: 1
+    });
+    localStorage.setItem('keranjang', JSON.stringify(keranjang));
+    alert('Produk ditambahkan ke keranjang!');
+  } else {
+    alert('Produk sudah ada di keranjang.');
+  }
+});
+
+  } else {
+    document.getElementById("detailContainer").innerHTML = '<p class="not-found">Produk tidak ditemukan.</p>';
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const keranjang = JSON.parse(localStorage.getItem("keranjang")) || [];
+    const badge = document.querySelector(".cart-badge");
+    if (badge) {
+      const totalJumlah = keranjang.reduce((sum, item) => sum + (item.jumlah || 1), 0);
+      badge.textContent = totalJumlah > 0 ? totalJumlah : "";
+    }
+  });
+</script>
+
+</body>
+</html>
