@@ -1,6 +1,6 @@
-# Rupin - Website UMKM Evercloth
+Website UMKM Evercloth
 
-Rupin adalah sebuah website berbasis PHP yang dikembangkan untuk mendukung digitalisasi UMKM **Evercloth**. Website ini dirancang untuk menampilkan informasi produk, promosi, dan memberikan pengalaman belanja sederhana untuk konsumen lokal.
+Sebuah website berbasis PHP yang dikembangkan untuk mendukung digitalisasi UMKM **Evercloth**. Website ini dirancang untuk menampilkan informasi produk, promosi, dan memberikan pengalaman belanja sederhana untuk konsumen lokal.
 
 ## 📁 Fitur Utama
 - Halaman Beranda dengan informasi produk unggulan
